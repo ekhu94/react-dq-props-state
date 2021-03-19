@@ -9,10 +9,7 @@ import GlowingBaby from './assets/glowing-eyes.png'
 // perhaps so we could do something along the lines of `eyeColorMapper['blue'] and get back the right image?`
 
 export default class BabyHog extends Component {
-
-  constructor(props) {
-    super(props)
-  }
+  state = { weight: Math.floor(Math.random() * 1000) }
 
   changeWeight = (e) => {
     // nothing needs to change here
@@ -23,17 +20,24 @@ export default class BabyHog extends Component {
   }
 
   render() {
+    const {hog, eyeColor} = this.props;
     return (
       <li className="hogbabies">
-        <h1>Name</h1>
-        <h3>Weight:</h3>
-        <h3>Hobby:</h3>
-        <h4>Eye Color:</h4>
+        <h1>{hog.name}</h1>
+        <h3>Weight: {this.state.weight}</h3>
+        <h3>Hobby: {hog.hobby}</h3>
+        <h4>Eye Color: {eyeColor}</h4>
           
-        <Button name="+">
+        <Button 
+          name="+"
+          onClick={e => this.changeWeight(e)}
+        >
           Increase Weight
         </Button>
-        <Button name="-">
+        <Button
+          name="-"
+          onClick={e => this.changeWeight(e)}
+        >
           Decrease Weight
         </Button>
 
